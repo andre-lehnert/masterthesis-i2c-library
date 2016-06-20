@@ -52,30 +52,6 @@ var moveResponse = {
 };
 
 
-var sendMessage = function(address, message) {
-
- // console.log("Bar: "+address);
-
-
-   SLAVE.setAddress(address);
-
-   var bytes = [];
-
-   for (var i = 0; i < message.length; ++i) {
-       bytes.push(message.charCodeAt(i));
-   }
-
-   SLAVE.writeBytes(0, bytes, function(err) {
-
-     if (err != null) {
-       console.log("ERROR: "+address+":sendMessage("+message+") ->"+ err);
-       return false;
-     } else {
-       return true;
-     }
-   });
-}
-
  //------------------------------------------------------------------------------
 var getBarReceiver = function(receiver) {
 
@@ -253,17 +229,22 @@ var getBarMotor = function(receiver) {
   else return false;
 
   return true;
-}
+};
 
-var error = false;
+var error = -1;
 
 var printError = function(err) {
  
-if(err != null) {
-	error = true;
+	console.log(err);
+
+	if(err != null) {
+	
+	error = 1;
+	} else {
+	error = 0;
 }
 
-}
+};
 
 /**
  * Escape special characters in the given string of html.
@@ -334,7 +315,11 @@ var move = function(receiver, position, speed) {
     if (! barReceiver.calibrated) {
 
 //      console.log(sendMessage( getBarMotor(barReceiver), "INIT:calibrate") );
+
+
+
 SLAVE.setAddress(getBarMotor(barReceiver));
+
 
 var message = "INIT:calibrate";
    var bytes = [];
@@ -344,17 +329,20 @@ var message = "INIT:calibrate";
        bytes.push(message.charCodeAt(i));
    }
 
+
+
    SLAVE.writeBytes(0, bytes, function(err) { printError(err); } );
-   if (error) { return false; } else { console.log("Bar: "+getBarMotor(barReceiver)+" OK");
+
+
+
+
+
+
 
      // Send calibration
-      setBarCalibration(barReceiver, true) == false ?
-      console.log("ERROR: setBarCalibration("+barReceiver.label+","+true+")") :
-      console.log("Calibration OK");
+      setBarCalibration(barReceiver, true);
 
-      setBarPosition(barReceiver, 0) == false ?
-      console.log("ERROR: setBarPosition("+barReceiver.label+","+0+")") :
-      console.log("Reset Position OK");
+      setBarPosition(barReceiver, 0);
 
 
     }

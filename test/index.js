@@ -9,6 +9,12 @@ describe('### DEBUGGING-API v2', function() {
 
   describe('## MOVE', function() {
 
+it('MOVE:A1/100/half', function() {
+        move('A1', 100, 'half').should.equal(true);
+      });
+
+
+/*
     // -------------------------------------------------------------------------
     // invalid invokations
     describe('# invalid invokations', function() {
@@ -137,7 +143,7 @@ describe('### DEBUGGING-API v2', function() {
       });
 
     });
-
+*/
   });
 
   // ---------------------------------------------------------------------------

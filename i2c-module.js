@@ -66,8 +66,13 @@ var sendMessage = function(address, message) {
    }
 
    SLAVE.writeBytes(0, bytes, function(err) {
-     console.log("ERROR: "+address+":sendMessage("+message+") ->"+ err);
-     return err;
+
+     if (err != null) {
+       console.log("ERROR: "+address+":sendMessage("+message+") ->"+ err);
+       return false;
+     } else {
+       return true;
+     }
    });
 }
 

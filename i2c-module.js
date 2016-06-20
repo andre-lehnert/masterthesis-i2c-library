@@ -51,12 +51,12 @@ var moveResponse = {
 
 
 var sendMessage = function(address, message) {
-  
+
    SLAVE.setAddress(address);
 
    var bytes = [];
 
-   for (var i = 0; i < str.length; ++i) {
+   for (var i = 0; i < message.length; ++i) {
        bytes.push(message.charCodeAt(i));
    }
 

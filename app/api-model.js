@@ -58,7 +58,7 @@ module.exports = {
   // -----------------------------------------------------------------------------
   // LIGHT & ANIMATION
   getAnimationMessage : function(animation, color, brightness, speed) {
-    var msg = api.debug.v2.LIGHT;
+    var msg = api.debug.v2.ANIMATION;
 
     msg = msg.replace("[animation]", animation)
              .replace("[color]", color)
@@ -68,7 +68,7 @@ module.exports = {
     return msg;
   },
   getLightMessage : function(side, operation, led, color, brightness) {
-    var msg = api.debug.v2.ANIMATION;
+    var msg = api.debug.v2.LIGHT;
 
     msg = msg.replace("[side]", side)
              .replace("[operation]", operation)

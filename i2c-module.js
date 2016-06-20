@@ -51,6 +51,7 @@ var moveResponse = {
 
 
 var sendMessage = function(address, message) {
+  
    SLAVE.setAddress(address);
 
    var bytes = [];
@@ -58,7 +59,10 @@ var sendMessage = function(address, message) {
    for (var i = 0; i < str.length; ++i) {
        bytes.push(message.charCodeAt(i));
    }
-   SLAVE.writeBytes(0, bytes, function(err) { err != null ? return false : return true;
+
+   SLAVE.writeBytes(0, bytes, function(err) {
+     return err !== null;
+   });
 }
 
  //------------------------------------------------------------------------------

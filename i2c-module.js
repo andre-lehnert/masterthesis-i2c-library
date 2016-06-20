@@ -54,7 +54,7 @@ var moveResponse = {
 
 var sendMessage = function(address, message) {
 
-  console.log("Bar: "+address);
+ // console.log("Bar: "+address);
 
 
    SLAVE.setAddress(address);
@@ -255,6 +255,15 @@ var getBarMotor = function(receiver) {
   return true;
 }
 
+var error = false;
+
+var printError = function(err) {
+ 
+if(err != null) {
+	error = true;
+}
+
+}
 
 /**
  * Escape special characters in the given string of html.
@@ -324,15 +333,21 @@ var move = function(receiver, position, speed) {
     // Check calibration
     if (! barReceiver.calibrated) {
 
-      if( ! sendMessage( getBarMotor(barReceiver), "INIT:calibrate") ) {
-        console.log("ALLLES SUPER");
-      } else {
-        console.log("FEHLER");
-      }
+//      console.log(sendMessage( getBarMotor(barReceiver), "INIT:calibrate") );
+SLAVE.setAddress(getBarMotor(barReceiver));
+
+var message = "INIT:calibrate";
+   var bytes = [];
 
 
+   for (var i = 0; i < message.length; ++i) {
+       bytes.push(message.charCodeAt(i));
+   }
 
-      // Send calibration
+   SLAVE.writeBytes(0, bytes, function(err) { printError(err); } );
+   if (error) { return false; } else { console.log("Bar: "+getBarMotor(barReceiver)+" OK");
+
+     // Send calibration
       setBarCalibration(barReceiver, true) == false ?
       console.log("ERROR: setBarCalibration("+barReceiver.label+","+true+")") :
       console.log("Calibration OK");

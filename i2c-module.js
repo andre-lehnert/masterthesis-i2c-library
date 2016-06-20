@@ -49,6 +49,18 @@ var moveResponse = {
   stepmode: ''
 };
 
+
+var sendMessage = function(address, message) {
+   SLAVE.setAddress(address);
+
+   var bytes = [];
+
+   for (var i = 0; i < str.length; ++i) {
+       bytes.push(message.charCodeAt(i));
+   }
+   SLAVE.writeBytes(0, bytes, function(err) { err != null ? return false : return true;
+}
+
  //------------------------------------------------------------------------------
 var getBarReceiver = function(receiver) {
 
@@ -297,16 +309,8 @@ var move = function(receiver, position, speed) {
     // Check calibration
     if (! barReceiver.calibrated) {
 
-      SLAVE.setAddress(getBarMotor(barReceiver));
-
-       var str = "INIT:calibrate";
-       var bytes = [];
-
-       for (var i = 0; i < str.length; ++i) {
-           bytes.push(str.charCodeAt(i));
-       }
-       SLAVE.writeBytes(0, bytes, function(err) { err != null ? console.log(err) : console.log("Send: "+str); });
-
+      if (! sendMessage( getBarMotor(barReceiver), "INIT:calibrate"))
+        return false;
 
       // Send calibration
       setBarCalibration(barReceiver, true) == false ?
@@ -316,6 +320,7 @@ var move = function(receiver, position, speed) {
       setBarPosition(barReceiver, 0) == false ?
       console.log("ERROR: setBarPosition("+barReceiver.label+","+0+")") :
       console.log("Reset Position OK");
+
 
     }
 

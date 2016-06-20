@@ -9,7 +9,7 @@ describe('### DEBUGGING-API v2', function() {
 
   describe('## MOVE', function() {
 
-it('MOVE:A1/100/half', function() {
+    it('MOVE:A1/100/half', function() {
         move('A1', 100, 'half').should.equal(true);
       });
 

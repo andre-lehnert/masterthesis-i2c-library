@@ -6,6 +6,8 @@
  * Licensed under the MIT license.
  */
 
+var util = require('util');
+
  var i2c = require('i2c');
  var MASTER = 0x0f;
 
@@ -62,7 +64,7 @@ var sendMessage = function(address, message) {
 
    SLAVE.writeBytes(0, bytes, function(err) {
      console.log("ERROR: sendMessage("+message+") ->"+ err);
-     return err !== null;
+     return err != null;
    });
 }
 
@@ -376,8 +378,8 @@ var move = function(receiver, position, speed) {
 
 
     // -------------------------------------------------------------------------
-    console.log(response);
-
+    //console.log(response);
+    console.log(util.inspect(response, {showHidden: true, depth: null}));
     return true;
 };
 

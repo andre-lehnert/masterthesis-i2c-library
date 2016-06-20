@@ -63,7 +63,7 @@ var sendMessage = function(address, message) {
    }
 
    SLAVE.writeBytes(0, bytes, function(err) {
-     console.log("ERROR: sendMessage("+message+") ->"+ err + " == "+(!err)+ " ==> "+(err != null));
+     console.log("ERROR: sendMessage("+message+") ->"+ err + " -> return "+(!err));
      return !err;
    });
 }
@@ -318,7 +318,8 @@ var move = function(receiver, position, speed) {
 
       console.log("Bar: "+getBarMotor(barReceiver));
 
-      console.log("Calibration: "+sendMessage( getBarMotor(barReceiver), "INIT:calibrate"));
+      if( !sendMessage( getBarMotor(barReceiver)))
+        return false;
 
 
       // Send calibration

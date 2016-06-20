@@ -2,7 +2,7 @@ var should = require('chai').should(),
     app = require('../i2c-module'),
     api = require('../app/api-model');
 
-    stepMode = app.stepMode,
+var stepMode = app.stepMode,
     bar = app.bar,
     move = app.move,
     light = app.light,

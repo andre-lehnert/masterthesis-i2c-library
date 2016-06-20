@@ -11,6 +11,36 @@ var should = require('chai').should(),
 
 var value;
 
+describe('### TEST A1', function() {
+
+  it('0x11;LIGHT:A/*', function() {
+    light(0x11, 'A', '*', '', '', '').should.equal(true);
+  });
+
+  it('0x11;LIGHT:A/+/1/ffaa00/100', function() {
+    light(0x11, 'A', '+', 1, 'ffaa00', 100).should.equal(true);
+  });
+
+  it('0x11;LIGHT:A/+/3/ffaa00/100', function() {
+    light(0x11, 'A', '+', 3, 'ffaa00', 100).should.equal(true);
+  });
+
+  it('0x11;LIGHT:A/+/5/ffaa00/100', function() {
+    light(0x11, 'A', '+', 5, 'ffaa00', 100).should.equal(true);
+  });
+
+  it('0x11;LIGHT:A/+/7/ffaa00/100', function() {
+    light(0x11, 'A', '+', 7, 'ffaa00', 100).should.equal(true);
+  });
+
+  it('0x11;LIGHT:A/+/9/ffaa00/100', function() {
+    light(0x11, 'A', '+', 9, 'ffaa00', 100).should.equal(true);
+  });
+
+
+});
+
+
 describe('### DEBUGGING-API v2', function() {
 
   describe('## I2C COMMUNICATION', function() {
@@ -213,10 +243,6 @@ describe('### DEBUGGING-API v2', function() {
     // invalid invokations
     describe('# invalid invokations', function() {
 
-      it('0x11;ANI:', function() {
-        animation(0x11, '', '', '').should.equal(false);
-      });
-
     });
 
     // -------------------------------------------------------------------------
@@ -230,12 +256,12 @@ describe('### DEBUGGING-API v2', function() {
         animation(0x11, 'glo', 'ff0000', '100', '50').should.equal(true);
       });
 
-      it('0x11;ANI:bli/ffff00/50/100', function() {
-        animation(0x11, 'bli', 'ffff00', '50', '100').should.equal(true);
+      it('0x11;ANI:bli/00ff00/50/100', function() {
+        animation(0x11, 'bli', '00ff00', '50', '100').should.equal(true);
       });
 
-      it('0x11;ANI:mov/ffffff/50/75', function() {
-        animation(0x11, 'mov', 'ffffff', '50', '75').should.equal(true);
+      it('0x11;ANI:mov/33aaff/50/75', function() {
+        animation(0x11, 'mov', '33aaff', '50', '75').should.equal(true);
       });
     });
   });

@@ -208,6 +208,26 @@ var setBarToken = function(receiver, token) {
   return true;
 };
 
+var getBarMotor = function(receiver) {
+
+  if (typeof receiver.label !== 'string') return false;
+
+  if (receiver.label.toUpperCase() === 'A1') return bar.A1.motor;
+  else if (receiver.label.toUpperCase() === 'A2') return bar.A2.motor;
+  else if (receiver.label.toUpperCase() === 'A3') return bar.A3.motor;
+
+  else if (receiver.label.toUpperCase() === 'B1') return bar.B1.motor;
+  else if (receiver.label.toUpperCase() === 'B2') return bar.B2.motor;
+  else if (receiver.label.toUpperCase() === 'B3') return bar.B3.motor;
+
+  else if (receiver.label.toUpperCase() === 'C1') return bar.C1.motor;
+  else if (receiver.label.toUpperCase() === 'C2') return bar.C2.motor;
+  else if (receiver.label.toUpperCase() === 'C3') return bar.C3.motor;
+  else return false;
+
+  return true;
+}
+
 
 /**
  * Escape special characters in the given string of html.

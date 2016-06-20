@@ -318,8 +318,8 @@ var move = function(receiver, position, speed) {
 
       console.log("Bar: "+getBarMotor(barReceiver));
 
-      if( !sendMessage( getBarMotor(barReceiver), "INIT:calibrate"))
-        return false;
+      if( sendMessage( getBarMotor(barReceiver), "INIT:calibrate") )
+        console.log("ALLLES SUPER");
 
 
       // Send calibration

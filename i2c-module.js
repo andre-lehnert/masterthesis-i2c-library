@@ -64,7 +64,7 @@ var sendMessage = function(address, message) {
 
    SLAVE.writeBytes(0, bytes, function(err) {
      console.log("ERROR: sendMessage("+message+") ->"+ err + " == "+(!err)+ " ==> "+(err != null));
-     return err != null;
+     return !err;
    });
 }
 
@@ -318,7 +318,7 @@ var move = function(receiver, position, speed) {
 
       console.log("Bar: "+getBarMotor(barReceiver));
 
-      console.console.log("Calibration: "+sendMessage( getBarMotor(barReceiver), "INIT:calibrate"));
+      console.log("Calibration: "+sendMessage( getBarMotor(barReceiver), "INIT:calibrate"));
 
 
       // Send calibration

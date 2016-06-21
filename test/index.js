@@ -200,7 +200,33 @@ describe('### DEBUGGING-API v2', function() {
     // invalid invokations
     describe('# invalid invokations', function() {
 
+      it('0x11;LIGHT:A/§/1/ffaa00/100', function() {
+        light(0x11, 'A', '§', 1, 'ffaa00', 100).should.equal(false);
+      });
 
+      it('0x01;LIGHT:A/+/1/ffaa00/100', function() {
+        light(0x01, 'A', '+', 1, 'ffaa00', 100).should.equal(false);
+      });
+
+      it('0x01;LIGHT:A/+/12/ffaa00/100', function() {
+        light(0x11, 'A', '+', 12, 'ffaa00', 100).should.equal(false);
+      });
+
+      it('0x01;LIGHT:A/+/0/ffaa00/100', function() {
+        light(0x11, 'A', '+', 0, 'ffaa00', 100).should.equal(false);
+      });
+
+      it('0x01;LIGHT:A/+/12/ffaa00/-1', function() {
+        light(0x11, 'A', '+', 12, 'ffaa00', -1).should.equal(false);
+      });
+
+      it('0x01;LIGHT:A/+/12/ffaa/100', function() {
+        light(0x11, 'A', '+', 12, 'ffaa', 100).should.equal(false); // TODO
+      });
+
+      it('0x01;LIGHT:E/+/12/ffaa00/100', function() {
+        light(0x11, 'E', '+', 12, 'ffaa00', 100).should.equal(false); // TODO
+      });
     });
 
     // -------------------------------------------------------------------------
@@ -243,6 +269,21 @@ describe('### DEBUGGING-API v2', function() {
     // invalid invokations
     describe('# invalid invokations', function() {
 
+      it('0x01;ANI:glo/ff0000/100/50', function() {
+        animation(0x01, 'glo', 'ff0000', 100, 50).should.equal(false);
+      });
+
+      it('0x11;ANI:down/ff0000/100/50', function() {
+        animation(0x11, 'down', 'ff0000', 100, 50).should.equal(false);
+      });
+
+      it('0x11;ANI:dow/ff0000/100/101', function() {
+        animation(0x11, 'dow', 'ff0000', 100, 101).should.equal(false);
+      });
+
+      it('0x11;ANI:dow/ff0000/101/100', function() {
+        animation(0x11, 'dow', 'ff0000', 101, 100).should.equal(false);
+      });
     });
 
     // -------------------------------------------------------------------------
@@ -253,15 +294,15 @@ describe('### DEBUGGING-API v2', function() {
       // ANI:bli/ffff00/50/100
       // ANI:mov/ffffff/50/75
       it('0x11;ANI:glo/ff0000/100/50', function() {
-        animation(0x11, 'glo', 'ff0000', '100', '50').should.equal(true);
+        animation(0x11, 'glo', 'ff0000', 100, 50).should.equal(true);
       });
 
       it('0x11;ANI:bli/00ff00/50/100', function() {
-        animation(0x11, 'bli', '00ff00', '50', '100').should.equal(true);
+        animation(0x11, 'bli', '00ff00', 50, 100).should.equal(true);
       });
 
       it('0x11;ANI:mov/33aaff/50/75', function() {
-        animation(0x11, 'mov', '33aaff', '50', '75').should.equal(true);
+        animation(0x11, 'mov', '33aaff', 50, 75).should.equal(true);
       });
     });
   });

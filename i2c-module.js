@@ -8,10 +8,7 @@
 
 var util = require('util'),
     i2c = require('./app/i2c-communication'),
-    api = require('./app/api-model'),
-    stepMode = move.stepMode,
-    moveResponse = move.moveResponse,
-    movingDirection = move.movingDirection;
+    api = require('./app/api-model');
 
 
 

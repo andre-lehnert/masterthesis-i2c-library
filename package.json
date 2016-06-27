@@ -1,6 +1,6 @@
 {
   "name": "masterthesis-i2c-library",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An module to invoke I²C communication",
   "main": "i2c-module.js",
   "license": "MIT",

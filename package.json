@@ -1,6 +1,6 @@
 {
   "name": "masterthesis-i2c-library",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An module to invoke I²C communication",
   "main": "i2c-module.js",
   "license": "MIT",
@@ -9,7 +9,9 @@
     "url": "https://github.com/andre-lehnert/masterthesis-i2c-library.git"
   },
   "author": "Andre Lehnert <contact@andre-lehnert.de> (http://andre-lehnert.de/)",
-  "dependencies": {},
+  "dependencies": {
+    "i2c": "0.1.8"
+  },
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^2.5.3"

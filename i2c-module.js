@@ -7,8 +7,6 @@
  */
 
 var util = require('util'),
-    bar = require('./app/bar-model'),
-    move = require('./app/move-model'),
     i2c = require('./app/i2c-communication'),
     api = require('./app/api-model'),
     stepMode = move.stepMode,
